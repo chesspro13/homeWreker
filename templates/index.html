@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<style type="text/css">
+
+    .upper_buttons {
+        text-align: center;
+    }
+
+    .lower_button {
+        text-align: center;
+    }
+
+    .buttonRight {
+        text-align: right;
+    }
+
+    .buttonLeft {
+        text-align: left;
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 100px;
+        margin-bottom: auto;
+    }
+
+    .song_name {
+        text-align: center;
+        margin-top:300px;
+    }
+
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Wreker Music Interface</title>
+</head>
+<body>
+    <h1 class="song_name">Song Name</h1>
+    <table border="1px">
+        <tr>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <td class="upper_buttons">
+                    <button type="submit" name="ctrl" value="record">
+                        Record
+                    </button>
+                </td>
+                <td class="upper_buttons">
+                    <button type="submit" name="ctrl" value="stop">
+                        Stop
+                    </button>
+                </td>
+                <td class="upper_buttons">
+                    <button type="submit" name="ctrl" value="rewind">
+                        Rewind
+                    </button>
+                </td>
+                <td class="upper_buttons">
+                    <button type="submit" name="ctrl" value="play">
+                        <b>Play</b>
+                    </button>
+                </td>
+                <td class="upper_buttons">
+                    <button type="submit" name="ctrl" value="forward">
+                        Forward
+                    </button>
+                </td>
+                <td class="upper_buttons">
+                    <button type="submit" name="ctrl" value="repeat">
+                        Repeat
+                    </button>
+                </td>
+                <td class="upper_buttons">
+                    <button type="submit" name="ctrl" value="expand">
+                        Expand
+                    </button>
+                </td>
+            </form>
+        </tr>
+        <tr>
+            <td colspan="7">===================================================================</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="buttonLeft">Time</td>
+            <form>
+                {% csrf_token %}
+                <td class="lower_button">
+                    <button type="submit">
+                        Volume Down
+                    </button>
+                </td>
+                <td class="lower_button">
+                    <button type="submit">
+                        Mute
+                    </button>
+                </td>
+                <td class="lower_button">
+                    <button type="submit">
+                        Volume Up
+                    </button>
+                </td>
+            </form>
+            <td colspan="2" class="buttonRight">Total Time</td>
+        </tr>
+    </table>
+</body>
+</html>
