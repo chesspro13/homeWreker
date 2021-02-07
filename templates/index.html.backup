@@ -41,8 +41,10 @@
     <h1 class="song_name">Song Name</h1>
     <table border="1px">
         <tr>
+            <form method="POST" action="">
+                {% csrf_token %}
                 <td class="upper_buttons">
-                    <button type="submit" name="ctrl" value="record" onclick="record()">
+                    <button type="submit" name="ctrl" value="record">
                         Record
                     </button>
                 </td>
@@ -52,38 +54,41 @@
                     </button>
                 </td>
                 <td class="upper_buttons">
-                    <button type="submit" name="ctrl" value="rewind" onclick="rewind()">
+                    <button type="submit" name="ctrl" value="rewind">
                         Rewind
                     </button>
                 </td>
                 <td class="upper_buttons">
-                    <button type="submit" name="ctrl" value="play" onclick="play()">
+                    <button type="submit" name="ctrl" value="play">
                         <b>Play</b>
                     </button>
                 </td>
                 <td class="upper_buttons">
-                    <button type="submit" name="ctrl" value="forward" onclick="forward()">
+                    <button type="submit" name="ctrl" value="forward">
                         Forward
                     </button>
                 </td>
                 <td class="upper_buttons">
-                    <button type="submit" name="ctrl" value="repeat" onclick="repeat()">
+                    <button type="submit" name="ctrl" value="repeat">
                         Repeat
                     </button>
                 </td>
                 <td class="upper_buttons">
-                    <button type="submit" name="ctrl" value="expand" onclick="expand()">
+                    <button type="submit" name="ctrl" value="expand">
                         Expand
                     </button>
                 </td>
+            </form>
         </tr>
         <tr>
             <td colspan="7" id="percent">===================================================================</td>
         </tr>
         <tr>
             <td colspan="2" class="buttonLeft" id='curTime'>Time</td>
+            <form action="" method="POST">
+                {% csrf_token %}
                 <td class="lower_button">
-                    <button type="submit" name="ctrl" value="volumeDown" onclick="volumeDown()">
+                    <button type="submit" name="ctrl" value="volumeDown">
                         Volume Down
                     </button>
                 </td>
@@ -93,10 +98,11 @@
                     </button>
                 </td>
                 <td class="lower_button">
-                    <button type="submit" name="ctrl" value="volumeUp" onclick="volumeUp()">
+                    <button type="submit" name="ctrl" value="volumeUp">
                         Volume Up
                     </button>
                 </td>
+            </form>
 	    <td colspan="2" id="totalTime" class="buttonRight">{{ length }}</td>
         </tr>
 	<input type ="hidden" id="mills">{{ mills }}</input>
@@ -106,51 +112,12 @@
 		var keepLooping = true;
 		var k = 0;
 		var timeElapsed = 0;
-		var startCounting = false;
-
-		var playing = true;
-
-		function tellMeCurTime(){
-			let xhr = new XMLHttpRequest();
-			let c = 0
-			xhr.open("GET",'getTime');
-			xhr.onload= function(){
-				c = parseInt(xhr.responseText)//document.getElementById('curTime').innerHTML = msToTime(xhr.responseText);
-				startCounting = true;
-				testing( c);
-			}
-			xhr.send();
-			return c;
-		}
-
-		function testing( tim ){
-			this.k = tim;
-		}
-
-		function volumeUp() {
-			let xhr = new XMLHttpRequest();
-			xhr.open('GET', 'volumeUp');
-			xhr.send();
-		}
-
-		function volumeDown() {
-			let xhr = new XMLHttpRequest();
-			xhr.open('GET', 'volumeDown');
-			xhr.send();
-		}
-
-		function play() {
-			let xhr = new XMLHttpRequest();
-			xhr.open('GET', 'play');
-			xhr.send();
-			playing = true;
-		}
 
 		function pause() {
 			let xhr = new XMLHttpRequest();
 			xhr.open('GET', 'pause');
+			xhr.responseType = 'text';
 			xhr.send();
-			playing = false;
 		}
 
 		function getTime() {
@@ -160,12 +127,13 @@
 
 			xhr.onload = function() {
 //				alert(xhr.responseText);
-
+//				console.log(xhr.responseText);
 				if( (xhr.responseText === "") == false)
 				{
 					if( keepLooping)
 					{
 						k = parseInt(xhr.responseText)//document.getElementById('curTime').innerHTML = msToTime(xhr.responseText);
+						console.log("Response: " + k );
 						keepLooping = false;
 					}
 				}
@@ -176,41 +144,32 @@
 //			return k;
 //			setInterval( getTime, 1000 );
 		}
-		function msToTime( tim ) {
-//			let k = tim;
-			let hours = Math.floor((k/1000)/3600);
-			let minutes = Math.floor(((k/1000)/60)- (hours*60));
-			let seconds = Math.floor(((k/1000)-(hours*60)+(minutes*60))%60);
+		function msToTime() {
+			hours = Math.floor((k/1000)/3600)
+			minutes = Math.floor(((k/1000)/60)- (hours*60))
+			seconds = Math.floor(((k/1000)-(hours*60)+(minutes*60))%60)
 
-			output = "";
-			if( hours < 10)
-				output += "0" + hours.toString();
-			else
-				output += hours.toString();
-
-			if( minutes < 10)
-				output += ":0" + minutes.toString();
-			else
-				output += ":" + minutes.toString();
-
-			if( seconds < 10)
-				output += ":0" + minutes.toString();
-			else
-				output += ":" + minutes.toString();
-
-//			return output;
 		    	return hours + ":" + minutes + ":" + seconds; // + "." + milliseconds;
+			/*			var hour = Math.floor((k/1000/60/60));
+			var min = Math.floor((k/1000/60));
+			var sec = Math.floor((k/1000));
+			console.log(hour + ':' + min + ':' + sec);*/
 		}
 
-		function setTime(tim) {
-				t = msToTime( tim );
-				document.getElementById('curTime').innerHTML = t;
+		function setTime() {
+			console.log(k);
+			t = msToTime( k);
+			document.getElementById('curTime').innerHTML = t;
+			console.log( "changed to : " + t );
+			k += 1000;
+			timeElapsed += 1;
 		}
 	
 		function getTotal(){
 			var length = 67
 			var total = (k/{{ mills }});
 			output = ""
+			console.log(String( total * 100 ) + "%");
 			for( i = 0; i < length * total; i++)
 				output += "=";
 			for( i = 0; i < length - output.length; i++)
@@ -219,12 +178,23 @@
 		}
 
 		function doStuff() {
-			setTime(tellMeCurTime());
+			if(keepLooping)
+			{
+				getTime();
+				console.log( "K: " + this.k );
+				console.log("still testing");
+			}
+			else{
+				setTime();
+			}
+
 			getTotal();
 
 		}
-
 		setInterval( doStuff, 1000 );
+//		setTime();
+//		setInterval( setTime, 1000 );
+//	setInterval( getTime, 1000);
 	</script>
 </body>
 </html>

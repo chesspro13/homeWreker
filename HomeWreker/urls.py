@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pages.views import home_page
+from pages.views import home_page, curPos, pause, play, volumeUp, volumeDown, getCurTime
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page),
+    path('curPos', curPos),
+    path('pause', pause),
+    path('play', play),
+    path('volumeUp', volumeUp),
+    path('volumeDown',volumeDown),
+    path('getTime', getCurTime),
 ]
