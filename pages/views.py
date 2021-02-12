@@ -55,7 +55,7 @@ def pause(request, *args, **kwargs):
     os.system("touch /home/pi/commands/stop")
 
 def getCurTime(request, *args, **kwargs):
-    os.system("sudo touch /home/pi/commands/getTime")
+    os.system("touch /home/pi/commands/getTime")
     print("Waiting for the client to get me the current time")
     while os.path.isfile("/home/pi/commands/curTime") == False:
         time.sleep(0.01)
