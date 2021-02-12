@@ -7,6 +7,8 @@ import time
 def home_page(request, *args, **kwargs):
     tab = request.POST.get("ctrl")
 
+    print( "Mils: " + str(getLengthMills() ))
+
     context = {
         'length': getLength(),
         'mills': getLengthMills()
@@ -53,14 +55,16 @@ def pause(request, *args, **kwargs):
     os.system("touch /home/pi/commands/stop")
 
 def getCurTime(request, *args, **kwargs):
-    os.system("touch /home/pi/commands/getTime")
-    while os.path.isfile("/home/pi/commands/time") == False:
+    os.system("sudo touch /home/pi/commands/getTime")
+    print("Waiting for the client to get me the current time")
+    while os.path.isfile("/home/pi/commands/curTime") == False:
         time.sleep(0.01)
-    f = open("/home/pi/commands/time","r")
+    print("Got the current time")
+    f = open("/home/pi/commands/curTime","r")
     s = f.read()
     print( "I have the time at " + s )
     f.close()
-    os.system("rm /home/pi/commands/time")
+    os.system("rm /home/pi/commands/curTime")
     return HttpResponse( str(s))
 
 
@@ -70,23 +74,25 @@ def curPos(request, *args, **kwargs):
 
     #f nextTime > 0:
 #  if time.time()*1000 > nextTime:
-    f = open("/home/pi/commands/curTime", 'r')
-    s = f.read()
-    f.close()
-    print( s )
-    return HttpResponse(str(s))
+    if os.path.isfile("/home/pi/commands/curTime"):
+        f = open("/home/pi/commands/curTime", 'r')
+        s = f.read()
+        f.close()
+        return HttpResponse(str(s))
 #   return HttpResponse( str( lastTime))
 
 def getLengthMills():
-    f = open("/home/pi/commands/audioLength",'r')
-    s = f.read()
-    f.close()
-    return s
+    if os.path.isfile("/home/pi/commands/audioLength"):
+        f = open("/home/pi/commands/audioLength",'r')
+        s = f.read()
+        f.close()
+        return s
 
 def getLength():
-    f = open("/home/pi/commands/audioLength",'r')
-    s = f.read()
-    f.close()
-    print( "Length: " + str(type(s)) + str(s))
-    l = time.gmtime(int(s)/1000)
-    return time.strftime("%H:%M:%S", l)
+    if os.path.isfile("/home/pi/commands/audioLength"):
+        f = open("/home/pi/commands/audioLength",'r')
+        s = f.read()
+        f.close()
+        print( "Length: " + str(type(s)) + str(s))
+        l = time.gmtime(int(s)/1000)
+        return time.strftime("%H:%M:%S", l)
