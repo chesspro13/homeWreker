@@ -59,6 +59,12 @@ def play(request, *args, **kwargs):
 def pause(request, *args, **kwargs):
     os.system("touch /home/pi/commands/stop")
 
+def rewind(request, *args, **kwargs):
+    os.system("touch /home/pi/commands/rewind")
+
+def forward(request, *args, **kwargs):
+    os.system("touch /home/pi/commands/forward")
+
 def getCurTime(request, *args, **kwargs):
     os.system("touch /home/pi/commands/getTime")
     print("Waiting for the client to get me the current time")
