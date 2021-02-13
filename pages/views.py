@@ -79,6 +79,7 @@ def getCurTime(request, *args, **kwargs):
     os.system("touch /home/pi/commands/getTime")
     print("Waiting for the client to get me the current time")
     while os.path.isfile("/home/pi/commands/curTime") == False:
+        print("Yay! The server responded with the time!")
         time.sleep(0.01)
     print("Got the current time")
     f = open("/home/pi/commands/curTime","r")
@@ -114,7 +115,7 @@ def getLength():
         f = open("/home/pi/commands/audioLength",'r')
         s = f.read()
         f.close()
-        print( "Length: " + str(type(s)) + str(s))
+        #print( "Length: " + str(type(s)) + str(s))
         l = time.gmtime(int(s)/1000)
         return time.strftime("%H:%M:%S", l)
 
