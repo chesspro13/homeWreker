@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from pages.views import home_page, curPos, pause, play, volumeUp, volumeDown, getCurTime
-from pages.views import rewind, forward
+from pages.views import downloadPage, downloadAudio, rewind, forward
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,8 @@ urlpatterns = [
     path('volumeUp', volumeUp),
     path('volumeDown',volumeDown),
     path('getTime', getCurTime),
+    path('download', downloadPage),
+    path('downloadAudio', downloadAudio),
     path('rewind', rewind),
     path('forward', forward),
 ]
