@@ -117,6 +117,7 @@
 			xhr.open("GET",'getTime');
 			xhr.onload= function(){
 				playTime = parseInt(xhr.responseText)//document.getElementById('curTime').innerHTML = msToTime(xhr.responseText);
+				console.log( playTime);
 				startCounting = true;
 			//	testing( this.c);
 			}
