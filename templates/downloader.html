@@ -1,1 +1,23 @@
 <html>
+
+	<body>
+		<form >
+			<input type="text" id="url" name="url">Download link</input>
+			<input type="button" onclick="download()">download</input>
+		</form>
+	</body>
+
+	<script>
+		#TODO: Figure out how to send data with XMLHttpRequest post
+		# That way I can send the url to be downloaded and not have the
+		# web page freeze up the the user.
+		function download() {
+			let xhr = new XMLHttpRequest();
+			xhr.open('POST', 'downloadAudio');
+			console.log(document.getElementById("url").value);
+			xhr.send(document.getElementById("url").value);
+		}
+
+	</script>
+	
+</html>

@@ -1,7 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.shortcuts import redirect
+from youtube_dl import YoutubeDL
+import subprocess
 import os
 import time
+import pafy
 # Create your views here.
 
 def home_page(request, *args, **kwargs):
@@ -36,6 +40,7 @@ def home_page(request, *args, **kwargs):
     if tab == "volumeDown":
         print("Volume down")
         os.system("touch /home/pi/commands/volumeDown")
+
 
     return render(request, "index.html", context)
 
@@ -96,3 +101,14 @@ def getLength():
         print( "Length: " + str(type(s)) + str(s))
         l = time.gmtime(int(s)/1000)
         return time.strftime("%H:%M:%S", l)
+
+def downloadPage(request, *args, **kwargs):
+    return render(request, "downloader.html", {})
+
+
+def downloadAudio( request, *args, **kwargs ):
+    url = "https://www.youtube.com/watch?v=OlWomZbCW6I"
+    url = request.POST.get('url')
+    print("Downloading " + url )
+    subprocess.run(['youtube-dl', '--extract-audio', '--audio-format', 'mp3', '-o', '/home/pi/songs/%(title)s.%(ext)s', url])
+    subprocess.run(['rm', '/home/pi/songs/%(title)s.webm'])
