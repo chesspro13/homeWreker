@@ -86,7 +86,7 @@ def getCurTime(request, *args, **kwargs):
     s = f.read()
     f.close()
     print( "I have the time at " + s )
-    os.system("sudo rm /home/pi/commands/curTime")
+    os.system("rm /home/pi/commands/curTime")
     return HttpResponse( str(s))
 
 
