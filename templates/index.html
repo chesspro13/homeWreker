@@ -72,8 +72,8 @@
                     </button>
                 </td>
                 <td class="upper_buttons">
-                    <button type="submit" name="ctrl" value="expand" onclick="expand()">
-                        Expand
+                    <button type="submit" name="ctrl" value="expand" onclick="restart()">
+                        Restart
                     </button>
                 </td>
         </tr>
@@ -134,9 +134,15 @@
 			xhr.send();
 		}
 
-		function Forward() {
+		function forward() {
 			let xhr = new XMLHttpRequest();
 			xhr.open('GET', 'forward');
+			xhr.send();
+		}
+
+		function restart() {
+			let xhr = new XMLHttpRequest();
+			xhr.open('GET', 'restart');
 			xhr.send();
 		}
 
