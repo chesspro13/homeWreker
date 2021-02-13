@@ -117,7 +117,7 @@
 			xhr.open("GET",'getTime');
 			xhr.onload= function(){
 				playTime = parseInt(xhr.responseText)//document.getElementById('curTime').innerHTML = msToTime(xhr.responseText);
-				console.log( playTime);
+				console.log( "PlayTime: " + String(playTime));
 				startCounting = true;
 			//	testing( this.c);
 			}
@@ -205,7 +205,7 @@
 			let hours = Math.floor((playTime/1000)/3600);
 			let minutes = Math.floor(((playTime/1000)/60)- (hours*60));
 			let seconds = Math.floor(((playTime/1000)-(hours*60)+(minutes*60))%60);
-			console.log(k);
+			console.log("K:" + String(k));
 			output = "";
 			if( hours < 10)
 				output += "0" + hours.toString();
