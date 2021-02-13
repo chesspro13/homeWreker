@@ -49,24 +49,31 @@ lastTime = 0
 
 def volumeUp(request, *args, **kwargs):
     os.system("touch /home/pi/commands/volumeUp")
+    return HttpResponse( "Done")
 
 def volumeDown(request, *args, **kwargs):
     os.system("touch /home/pi/commands/volumeDown")
+    return HttpResponse( "Done")
 
 def play(request, *args, **kwargs):
     os.system("touch /home/pi/commands/play")
+    return HttpResponse( "Done")
 
 def pause(request, *args, **kwargs):
     os.system("touch /home/pi/commands/stop")
+    return HttpResponse( "Done")
 
 def rewind(request, *args, **kwargs):
     os.system("touch /home/pi/commands/rewind")
+    return HttpResponse( "Done")
 
 def forward(request, *args, **kwargs):
     os.system("touch /home/pi/commands/forward")
+    return HttpResponse( "Done")
 
 def restart(request, *args, **kwargs):
     os.system("touch /home/pi/commands/restart")
+    return HttpResponse( "Done")
 
 def getCurTime(request, *args, **kwargs):
     os.system("touch /home/pi/commands/getTime")
