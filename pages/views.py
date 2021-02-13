@@ -79,14 +79,14 @@ def getCurTime(request, *args, **kwargs):
     os.system("touch /home/pi/commands/getTime")
     print("Waiting for the client to get me the current time")
     while os.path.isfile("/home/pi/commands/curTime") == False:
-        print("Yay! The server responded with the time!")
-        time.sleep(0.01)
+        time.sleep(0.001)
+    print("Yay! The server responded with the time!")
     print("Got the current time")
     f = open("/home/pi/commands/curTime","r")
     s = f.read()
-    print( "I have the time at " + s )
     f.close()
-    os.system("rm /home/pi/commands/curTime")
+    print( "I have the time at " + s )
+    os.system("sudo rm /home/pi/commands/curTime")
     return HttpResponse( str(s))
 
 
