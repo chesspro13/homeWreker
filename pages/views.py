@@ -128,7 +128,10 @@ def downloadAudio( request, *args, **kwargs ):
     url = "https://www.youtube.com/watch?v=OlWomZbCW6I"
     url = request.POST.get('url')
     url = request.body
+    f= open("/home/pi/commands/downloadThis", 'w')
+    #f.write( str(url[2:-1]))
+    f.close()
     print("Downloading audio for " + str(url ))
-    subprocess.run(['youtube-dl', '--extract-audio', '--audio-format', 'mp3', '-o', '/home/pi/songs/%(title)s.%(ext)s', url])
+    #subprocess.run(['youtube-dl', '--extract-audio', '--audio-format', 'mp3', '-o', '/home/pi/songs/%(title)s.%(ext)s', url])
     #subprocess.run(['rm', '/home/pi/songs/%(title)s.webm'])
     return HttpResponse("Copy")
