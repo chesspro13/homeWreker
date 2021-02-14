@@ -12,10 +12,11 @@
 		# That way I can send the url to be downloaded and not have the
 		# web page freeze up the the user.
 		function download() {
-			let xhr = new XMLHttpRequest();
-			xhr.open('POST', 'downloadAudio');
+		//	let xhr = new XMLHttpRequest();
+		//	xhr.open('POST', 'downloadAudio');
+		//	console.log(document.getElementById("url").value);
+		//	xhr.send(document.getElementById("url").value);
 			console.log(document.getElementById("url").value);
-			xhr.send(document.getElementById("url").value);
 		}
 
 	</script>
