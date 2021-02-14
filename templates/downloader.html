@@ -14,8 +14,11 @@
 			xhr.open('POST', 'downloadAudio');
 			console.log(document.getElementById("url").value);
 			xhr.send(document.getElementById("url").value);
-			console.log(document.getElementById("url").value);
 		}
+
+		import Cookies from "js-cookie";
+		var CSRF_TOKEN = Cookies.get("csrftoken");
+		export default CSRF_TOKEN;
 
 	</script>
 	
