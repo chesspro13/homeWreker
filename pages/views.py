@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -122,7 +123,7 @@ def getLength():
 def downloadPage(request, *args, **kwargs):
     return render(request, "downloader.html", {})
 
-
+@csrf_exempt
 def downloadAudio( request, *args, **kwargs ):
     url = "https://www.youtube.com/watch?v=OlWomZbCW6I"
     url = request.POST.get('url')
