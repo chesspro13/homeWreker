@@ -127,6 +127,6 @@ def downloadPage(request, *args, **kwargs):
 def downloadAudio( request, *args, **kwargs ):
     url = "https://www.youtube.com/watch?v=OlWomZbCW6I"
     url = request.POST.get('url')
-    print("Downloading audio for " + str(url) )
+    print("Downloading audio for " + type(url) )
     subprocess.run(['youtube-dl', '--extract-audio', '--audio-format', 'mp3', '-o', '/home/pi/songs/%(title)s.%(ext)s', url])
     subprocess.run(['rm', '/home/pi/songs/%(title)s.webm'])
