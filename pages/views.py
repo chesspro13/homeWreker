@@ -131,7 +131,7 @@ def downloadAudio( request, *args, **kwargs ):
     f= open("/home/pi/commands/downloadThis", 'w')
     #f.write( str(url[2:-1]))
     f.close()
-    print("Downloading audio for " + str(url ))
+    print("Downloading audio for " + str(url.decode('utf-8') ))
     print("Download type?" + str(type(url)))
     #subprocess.run(['youtube-dl', '--extract-audio', '--audio-format', 'mp3', '-o', '/home/pi/songs/%(title)s.%(ext)s', url])
     #subprocess.run(['rm', '/home/pi/songs/%(title)s.webm'])
