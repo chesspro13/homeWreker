@@ -1,8 +1,12 @@
 <html>
 
 	<body>
-			<input type="text" id="url" name="url" value="https://www.youtube.com/watch?v=gR3aAi-fNJA">Download link</input>
-			<input type="button" onclick="download()">download</input>
+		<table>
+			<tr>
+				<input type="text" id="url" name="url" value="https://www.youtube.com/watch?v=gR3aAi-fNJA">Download link</input>
+				<input type="button" onclick="download()">download</input>
+			</tr>
+		</table>
 	</body>
 
 	<script>
@@ -15,10 +19,6 @@
 			console.log(document.getElementById("url").value);
 			xhr.send(document.getElementById("url").value);
 		}
-
-		import Cookies from "js-cookie";
-		var CSRF_TOKEN = Cookies.get("csrftoken");
-		export default CSRF_TOKEN;
 
 	</script>
 	
