@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shit tits</title>
+</head>
+<body>
+
+    <div id="music" class="action">
+      <h2>Music</h2>
+    </div>
+
+    <div id="alarm" class="action" style="display:none">
+      <h2>Alarm</h2>
+    </div>
+
+     <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button" onclick="setAction('music')">Music</button>
+      <button class="w3-bar-item w3-button" onclick="setAction('alarm')">Paris</button>
+    </div>
+</body>
+    <javascript>
+        function setAction(actionName) {
+          var i;
+          var x = document.getElementsByClassName("action");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          document.getElementById(actionName).style.display = "block";
+        }
+
+    </javascript>
+</html>

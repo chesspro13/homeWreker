@@ -45,6 +45,10 @@ def home_page(request, *args, **kwargs):
 
     return render(request, "index.html", context)
 
+
+def base_page(request, *args, **kwargs):
+    return render(request, "base.html", {})
+
 nextTime = 0
 lastTime = 0
 

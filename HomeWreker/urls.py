@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from pages.views import home_page, curPos, pause, play, volumeUp, volumeDown, getCurTime
-from pages.views import downloadPage, downloadAudio, rewind, forward, restart
+from pages.views import downloadPage, downloadAudio, rewind, forward, restart, base_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +33,5 @@ urlpatterns = [
     path('rewind', rewind),
     path('forward', forward),
     path('restart', restart),
+    path('testing', base_page),
 ]
