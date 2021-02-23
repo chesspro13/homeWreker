@@ -50,6 +50,10 @@ def base_page(request, *args, **kwargs):
     return render(request, "base.html", {})
 
 
+def scroll_testing(request, *args, **kwargs):
+    return render(request, "scrollTesting.html", {})
+
+
 def volumeUp(request, *args, **kwargs):
     os.system("touch /speaker/commands/volumeUp")
     return HttpResponse("Done")
@@ -84,6 +88,14 @@ def restart(request, *args, **kwargs):
     os.system("touch /speaker/commands/restart")
     return HttpResponse("Done")
 
+
+@csrf_exempt
+def playSong(request, *args, **kwargs):
+    d = request.POST
+
+    print( '\n\n\nGonna play ' + d['song'] + "\n\n\n")
+
+    return HttpResponse("Done")
 
 def getCurTime(request, *args, **kwargs):
     os.system("touch /speaker/commands/getTime")
@@ -151,6 +163,7 @@ def downloadAudio(request, *args, **kwargs):
     return HttpResponse("Copy")
 
 
+# TODO: Use this to optimise stuff
 def checkInit():
     if os.path.isfile("/speaker/commands/init") != False:
         print("There is a user connecting for the first time")

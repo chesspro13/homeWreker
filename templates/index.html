@@ -21,13 +21,65 @@
     table {
         margin-left: auto;
         margin-right: auto;
-        margin-top: 100px;
-        margin-bottom: auto;
     }
 
     .song_name {
         text-align: center;
         margin-top:300px;
+    }
+
+    .titleRow {
+        background-color: red;
+        margin-left: auto;
+        margin-right: auto;
+        width: 75%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .bill {
+        background-color: red;
+    }
+
+    .songTable {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .songs {
+        width: 75%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    tr:nth-child(odd) {
+            background-color: #C4D8E2;
+    }
+
+    tr:nth-child(even) {
+            background-color: #778899;
+    }
+
+    .title {
+        background-color: black;
+        color: white;
+    }
+
+    .runTime {
+        background-color: black;
+        color: white;
+        text-align: right;
+        padding-right: 200px;
+    }
+
+    tr:hover {
+        background-color: white;
+        cursor: pointer;
     }
 
 </style>
@@ -38,9 +90,9 @@
     <title>Home Wreker Music Interface</title>
 </head>
 <body>
-    <h1 class="song_name">Song Name</h1>
+    <h1 class="song_name" id="song_name">Song Name</h1>
     <table border="1px">
-        <tr>
+        <tr class="controller" style="background-color: white">
                 <td class="upper_buttons">
                     <button type="submit" name="ctrl" value="record" onclick="record()">
                         Record
@@ -77,10 +129,10 @@
                     </button>
                 </td>
         </tr>
-        <tr>
+        <tr class="controller" style="background-color: white">
             <td colspan="7" id="percent">===================================================================</td>
         </tr>
-        <tr>
+        <tr class="controller" style="background-color: white">
             <td colspan="2" class="buttonLeft" id='curTime'>Time</td>
                 <td class="lower_button">
                     <button type="submit" name="ctrl" value="volumeDown" onclick="volumeDown()">
@@ -102,6 +154,108 @@
 	<input type ="hidden" id="mills">{{ mills }}</input>
     </table>
 
+    <div class="songTable">
+        <table class="titleRow" style="padding-bottom: none;">
+            <tr class="bill" >
+                <td class="title">Title</td>
+                <td class="runTime">Run Time</td>
+            </tr>
+        </table>
+        <div style="overflow:scroll;    height:200px; width:100%; overflow:auto">
+
+
+            <!--
+
+            ===========================Replace this with found songs on hardware============================
+
+            -->
+
+
+            <table class="songs" style="padding-top: none;">
+                <tr onclick="setSong('test_song001.mp3')">
+                    <td>test_song001</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song002.mp3')">
+                    <td>test_song002</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song003.mp3')">
+                    <td>test_song003</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song004.mp3')">
+                    <td>test_song004</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song005.mp3')">
+                    <td>test_song005</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song006.mp3')">
+                    <td>test_song006</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song007.mp3')">
+                    <td>test_song007</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song008.mp3')">
+                    <td>test_song008</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song009.mp3')">
+                    <td>test_song009</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song010.mp3')">
+                    <td>test_song010</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song011.mp3')">
+                    <td>test_song011</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song012.mp3')">
+                    <td>test_song012</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song013.mp3')">
+                    <td>test_song013</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song014.mp3')">
+                    <td>test_song014</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song015.mp3')">
+                    <td>test_song015</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song016.mp3')">
+                    <td>test_song016</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song017.mp3')">
+                    <td>test_song017</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song018.mp3')">
+                    <td>test_song018</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song019.mp3')">
+                    <td>test_song019</td>
+                    <td>00:05:00</td>
+                </tr>
+                <tr onclick="setSong('test_song20.mp3')">
+                    <td>test_song0020</td>
+                    <td>00:05:00</td>
+                </tr>
+            </table>
+
+         </div>
+    </div>
 	<script>
 		var keepLooping = true;
 		var k = 0;
@@ -110,6 +264,11 @@
 
 		var playTime = 0;
 		var playing = true;
+
+        function setSong( song ){
+            document.getElementById('song_name').innerHTML = song;
+            playSong( song );
+        }
 
 		function tellMeCurTime(){
 			let xhr = new XMLHttpRequest();
@@ -161,6 +320,14 @@
 			let xhr = new XMLHttpRequest();
 			xhr.open('GET', 'volumeDown');
 			xhr.send();
+		}
+
+		function playSong( songName ) {
+			let xhr = new XMLHttpRequest();
+			xhr.open('POST', 'playSong', true)
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');;
+			var dataSend = "song=" + songName;
+			xhr.send(dataSend);
 		}
 
 		function play() {
@@ -233,14 +400,18 @@
 		}
 	
 		function getTotal(){
-			var length = 67;
-			var total = (playTime/{{ mills }});
-			output = "";
-			for( i = 0; i < length * total; i++)
-				output += "=";
-			for( i = 0; i < length - output.length; i++)
-				output += " ";
-			document.getElementById('percent').innerHTML = output;
+		    try{
+                var length = 67;
+                var total = (playTime/{{ mills }});
+                output = "";
+                for( i = 0; i < length * total; i++)
+                    output += "=";
+                for( i = 0; i < length - output.length; i++)
+                    output += " ";
+                document.getElementById('percent').innerHTML = output;
+			}catch (error){
+			    document.getElementById('percent').innerHTML = "00:00:00";
+			}
 		}
 
 		function doStuff() {

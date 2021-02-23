@@ -18,6 +18,7 @@ from django.urls import path
 
 from pages.views import home_page, curPos, pause, play, volumeUp, volumeDown, getCurTime
 from pages.views import downloadPage, downloadAudio, rewind, forward, restart, base_page
+from pages.views import scroll_testing, playSong
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +35,6 @@ urlpatterns = [
     path('forward', forward),
     path('restart', restart),
     path('testing', base_page),
+    path('scrollTesting', scroll_testing),
+    path('playSong', playSong),
 ]
